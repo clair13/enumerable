@@ -18,4 +18,21 @@ module Enumerable
     self.my_each { |i| array << i if yield(i) }
     array
   end
+
+  def my_all?
+    self.my_each { |i| return false if !yield(i) }
+    true
+  end
+
+  def my_any?
+    self.my_each { |i| return true if yield(i) }
+    false
+  end
+
+  def my_none?
+    self.my_any? { |i| return false if yield(i) }
+    true
+  end
+
+
 end
